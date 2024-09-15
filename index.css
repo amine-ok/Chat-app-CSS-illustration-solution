@@ -1,9 +1,4 @@
-/*
-* Prefixed by https://autoprefixer.github.io
-* PostCSS: v8.4.14,
-* Autoprefixer: v10.4.7
-* Browsers: last 4 version
-*/
+
 * {
   border: 0;
   padding: 0;
@@ -39,6 +34,7 @@ body::before {
   width: 35%;
   z-index: -1;
   overflow: hidden;
+  animation: background 1s ease-in;
 }
 body:after {
   content: "";
@@ -52,6 +48,7 @@ body:after {
   border-top-left-radius: 90% 40%;
   border-top-right-radius: 50px 13px;
   z-index: -1;
+  animation: background 1s ease-in;
 }
 main {
   grid-area: 1/1/2/2;
@@ -77,15 +74,20 @@ main {
   z-index: 6;
   width: 32%;
   h1 {
+    animation: title 1s 1s ease-in-out forwards;
+    opacity: 0;
     font-weight: 700;
     color: hsl(271, 36%, 24%);
     margin-bottom: 20px;
     font-size: 50px;
     background: transparent;
     margin-bottom: 60px;
+    transform: translateX(100%);
   }
 
   p {
+    opacity: 0;
+    animation: text 1s 2s ease-in-out forwards;
     color: hsl(270, 7%, 64%);
     font-size: 20px;
     background: transparent;
@@ -96,9 +98,11 @@ body {
   display: grid;
   grid-template: 95vh 5vh / 1fr;
 }
-.tel {
+.tel {opacity:0;
+  animation: up .8s 3s ease-in-out forwards;
   height: 65vh;
   width: 17%;
+  min-width:326px;
   z-index: 6;
   background-color: #fff;
   border-radius: 35px;
@@ -122,7 +126,9 @@ body {
   flex-direction: column;
   background-color: hsl(270, 20%, 96%);
 }
-.header {
+.header {opacity:0;
+  animation: up 1s 5s  ease-out  forwards;
+
   position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -201,7 +207,7 @@ body {
     }
   }
   .ids + p {
-    -webkit-writing-mode: vertical-lr;
+    -webkit-writing-mode: ver-lr;
     -ms-writing-mode: tb-lr;
     writing-mode: vertical-lr;
     font-size: 18px;
@@ -211,7 +217,8 @@ body {
     font-weight: 700;
   }
 }
-.header:before {
+.header:before {/* opacity: 0; */
+  /* animation: up .5s 5.3s forwards;  */
   content: "";
   position: absolute;
   top: 0;
@@ -236,7 +243,9 @@ body {
   top: 13px;
   right: -19px;
 }
-.appmain {
+.appmain {opacity:0;
+  animation: down  1s 4.5s ease-out forwards;
+
   padding: 0 10px 10px 10px;
   height: 76%;
   background: rgba(245, 243, 248);
@@ -413,7 +422,9 @@ h2.prc {
   position: relative;
   right: -10px;
 }
-.bar {
+.bar {opacity:0;
+  animation:down  1s 4s forwards;
+
   margin: 0 auto;
   background-color: #fff;
   height: 8%;
@@ -473,7 +484,53 @@ h2.prc {
   color: rgb(62, 39, 83);
   font-weight: 700;
 }
-a[href]{
+a[href] {
   color: rgb(241, 155, 50);
   cursor: pointer;
+}
+@keyframes background {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes title {
+  0% {
+    .text h1 {
+      transform: translate(100%, 0);
+    }
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes text {
+  0% {
+    transform: translate(100%, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+}
+@keyframes down {
+  0%{
+    transform: translate(0, 100%);
+  }
+  100%{
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+}
+@keyframes up {
+  0%{
+    transform: translate(0, -100%);
+  }
+  100%{
+    opacity: 1;
+    transform: translate(0, 0);
+  }
 }
